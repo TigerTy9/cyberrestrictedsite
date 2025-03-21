@@ -1,5 +1,3 @@
-import Lottie from "lottie-react";
-import edu from "../assets/edu.json";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -33,12 +31,6 @@ const Home = () => {
           >
             Learn More
           </Link>
-        </div>
-      </div>
-      {/* Lottie Animation */}
-      <div className="relative lg:w-1/2 ">
-        <div className="w-full lg:w-4/5 lg:ml-auto h-56  sm:h-96">
-          <Lottie animationData={edu} loop={true} />
         </div>
       </div>
     </div>
