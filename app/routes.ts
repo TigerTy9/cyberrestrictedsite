@@ -1,7 +1,9 @@
-// File: app/routes.ts
-import { type RouteConfig, index, route } from "@react-router/dev/routes";
-
-export default [
-  index("routes/_home.tsx"),
-  route("routes/books.tsx")
-] satisfies RouteConfig;
+const routes = [
+    index("routes/_index.tsx"),
+    route("routes/lore.tsx"),
+  ];
+  
+  console.log("Routes loaded:", routes);
+  
+  export default routes;
+  
