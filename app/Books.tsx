@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "@remix-run/react";
+import { Link } from "react-router";
+import { Card, CardContent } from "../components/ui/card";
+
 const books = [
   {
     id: "CR_001",
