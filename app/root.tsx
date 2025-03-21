@@ -12,6 +12,7 @@ import "./app.css";
 import "./styles/global.css";
 import GlitchEffect from "./GlitchEffect";
 import Books from "./Books";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import { BrowserRouter } from 'react-router-dom';
 
