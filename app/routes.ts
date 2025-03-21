@@ -2,8 +2,9 @@
 import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
-  index("routes/_index.tsx"), // Your home route
-  route("routes/lore.tsx"),   // Your lore route
+  index("routes/_index.tsx"), // Home route
+  route("routes/lore.tsx"),   // Lore route
+  // Add more routes like: route("routes/yourpage.tsx"),
 ] satisfies RouteConfig;
 
 console.log("Routes loaded:", routes);
