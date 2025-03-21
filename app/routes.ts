@@ -5,3 +5,5 @@ export default [
   index("routes/_index.tsx"), // Your home route
   route("routes/lore.tsx"),   // Your lore route
 ] satisfies RouteConfig;
+
+console.log("Routes loaded:", routes);
