@@ -4,9 +4,6 @@ import {
   Meta,
   Outlet,
   Scripts,
-  Routes,
-  Route,
-  BrowserRouter,
   ScrollRestoration,
 } from "react-router";
 
@@ -16,14 +13,12 @@ import "./styles/global.css";
 import GlitchEffect from "./GlitchEffect";
 import Books from "./Books";
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-const root = document.getElementById("root");
+
 
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/GlitchEffect" element={<GlitchEffect />} />
+      <Route path="/" element={<App />} />
     </Routes>
   </BrowserRouter>
 );
@@ -59,13 +54,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-// export default function App() {
-//   return (
-//     <GlitchEffect>
-//       <Outlet />
-//     </GlitchEffect>
-//   );
-// }
+export default function App() {
+  return (
+    <GlitchEffect>
+      <Outlet />
+    </GlitchEffect>
+  );
+}
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
