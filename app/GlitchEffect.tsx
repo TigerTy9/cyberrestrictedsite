@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Outlet } from "react-router";
 
 export default function GlitchEffect() {
   const [isGlitching, setIsGlitching] = useState(false);
