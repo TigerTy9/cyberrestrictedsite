@@ -38,6 +38,24 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+// export function Layout({ children }: { children: React.ReactNode }) {
+//   return (
+//     <html lang="en">
+//       <head>
+//         <meta charSet="utf-8" />
+//         <meta name="viewport" content="width=device-width, initial-scale=1" />
+//         <Meta />
+//         <Links />
+//       </head>
+//       <body>
+//         {children}
+//         <ScrollRestoration />
+//         <Scripts />
+//       </body>
+//     </html>
+//   );
+// }
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -48,13 +66,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <nav className="bg-black border-b border-green-500 text-green-400 font-mono px-4 py-3 flex justify-center gap-8 text-sm z-50">
+          <a href="/home" className="hover:text-green-300 transition">Home</a>
+          <a href="/books" className="hover:text-green-300 transition">Books</a>
+        </nav>
+        <div className="pt-4">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
 }
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
