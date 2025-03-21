@@ -45,7 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-   return <Books />;
+   return <GlitchEffect />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
