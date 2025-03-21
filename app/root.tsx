@@ -21,18 +21,18 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/books",
-        element: <Books />,
-        loader: () => {
-          return fetch(`https://api.itbook.store/1.0/new`);
-        },
+        // path: "/books",
+        // element: <Books />,
+        // loader: () => {
+        //   return fetch(`https://api.itbook.store/1.0/new`);
+        // },
       },
       {
-        path: "book/:id",
-        element: <BookDetail />,
-        loader: ({ params }) => {
-          return fetch(`https://api.itbook.store/1.0/books/${params.id}`);
-        },
+        // path: "book/:id",
+        // element: <BookDetail />,
+        // loader: ({ params }) => {
+        //   return fetch(`https://api.itbook.store/1.0/books/${params.id}`);
+        // },
       },
       {
         path: "loadspinner",
