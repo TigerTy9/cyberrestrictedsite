@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 
 const books = [
   {
@@ -21,29 +21,40 @@ const books = [
 
 export default function Books() {
   return (
-    <div className="min-h-screen bg-black text-green-400 font-mono p-6">
+    <div className="relative min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-green-400 font-mono p-6 overflow-hidden">
+      {/* Background grid + scanline */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[repeating-linear-gradient(transparent,transparent_2px,rgba(255,255,255,0.01)_2px,rgba(255,255,255,0.01)_4px)] mix-blend-overlay pointer-events-none" />
+
+      {/* Header */}
       <motion.h1
-        className="text-4xl mb-8 text-center glitch"
+        className="text-4xl mb-8 text-center glitch text-green-400"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        /books [Cyber Restricted Series]
+        <span className="inline-block animate-pulse">/books</span> [Cyber Restricted Series]
       </motion.h1>
 
+      {/* Book Cards */}
       <div className="grid gap-6 md:grid-cols-2">
         {books.map((book, i) => (
           <motion.div
             key={book.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.2 }}
           >
-            <Card className="bg-zinc-900 border border-green-600 shadow-md hover:scale-[1.02] transition-transform duration-300">
-              <CardContent className="p-5">
-                <h2 className="text-2xl mb-2">{book.title}</h2>
-                <p className="mb-3 text-sm opacity-90">{book.description}</p>
-                <div className="text-xs uppercase tracking-wide">
+            <Card className="relative group bg-black/70 border border-green-500 shadow-lg shadow-green-900/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+              <div className="absolute inset-0 pointer-events-none group-hover:animate-pulse bg-green-400/5 blur-sm" />
+              <CardContent className="p-6 relative z-10">
+                <h2 className="text-2xl font-semibold mb-2 tracking-tight text-green-300">
+                  <span className="group-hover:underline underline-offset-4 decoration-green-400">{book.title}</span>
+                </h2>
+                <p className="text-sm mb-4 opacity-90 leading-relaxed">
+                  {book.description}
+                </p>
+                <div className="text-xs uppercase tracking-widest text-green-500">
                   Status: <span className="text-green-300">{book.status}</span>
                 </div>
               </CardContent>
@@ -52,9 +63,10 @@ export default function Books() {
         ))}
       </div>
 
-      <div className="mt-10 text-center text-sm text-zinc-400">
+      {/* Footer Nav */}
+      <div className="mt-12 text-center text-sm text-green-500">
         <Link to="/" className="hover:underline">
-          &lt;- return to terminal
+          &lt;- Return to Terminal
         </Link>
       </div>
     </div>
