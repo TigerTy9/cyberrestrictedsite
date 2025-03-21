@@ -1,122 +1,52 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./components/Home.jsx";
+import About from "./components/About.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
+import Books from "./components/Books.jsx";
+import BookDetail from "./components/BookDetail.jsx";
+import LoadingSpiner from "./components/LoadingSpiner.jsx";
 
-import type { Route } from "./+types/root";
-import "./app.css";
-import "./styles/global.css";
-import GlitchEffect from "./GlitchEffect";
-//import Books from "./Books";
-import { NavBar } from "./components/NavBar";
-
-// root.tsx
-import { index } from "@react-router/dev/routes";
-import type { RouteConfig } from "@react-router/dev/routes";
-import HomePage from "./routes/home";
-import AboutPage from "./routes/about";
-import BooksPage from "./routes/books";
-
-export default [
+const router = createBrowserRouter([
   {
-    index: true,
-    element: <HomePage />,
+    path: "/",
+    element: <App></App>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
+        loader: () => {
+          return fetch(`https://api.itbook.store/1.0/new`);
+        },
+      },
+      {
+        path: "book/:id",
+        element: <BookDetail />,
+        loader: ({ params }) => {
+          return fetch(`https://api.itbook.store/1.0/books/${params.id}`);
+        },
+      },
+      {
+        path: "loadspinner",
+        element: <LoadingSpiner />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
   },
-  {
-    path: "about",
-    element: <AboutPage />,
-  },
-  {
-    path: "books",
-    element: <BooksPage />,
-  },
-];
-
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
-
-// export function Layout({ children }: { children: React.ReactNode }) {
-//   return (
-//     <html lang="en">
-//       <head>
-//         <meta charSet="utf-8" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1" />
-//         <Meta />
-//         <Links />
-//       </head>
-//       <body>
-//         {children}
-//         <ScrollRestoration />
-//         <Scripts />
-//       </body>
-//     </html>
-//   );
-// }
-
-export function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <nav className="bg-black border-b border-green-500 text-green-400 font-mono px-4 py-3 flex justify-center gap-8 text-sm z-50">
-          <a href="/home" className="hover:text-green-300 transition">Home</a>
-          <a href="/books" className="hover:text-green-300 transition">Books</a>
-        </nav>
-        <div className="pt-4">
-          {children}
-        </div>
-        <ScrollRestoration />
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
-  );
-}
+]);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
