@@ -15,14 +15,15 @@ import Books from "./Books";
 import { NavBar } from "./components/NavBar";
 
 // root.tsx
-import { type RouteConfig, index, routeFile } from "@react-router/dev/routes";
+import routes from "@react-router/dev/routes";
+
+const { index, routeFile } = routes;
 
 export default [
   index("routes/home.tsx"),
   routeFile("routes/about.tsx"),
   routeFile("routes/books.tsx"),
-] satisfies RouteConfig;
-
+] satisfies routes.RouteConfig;
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
