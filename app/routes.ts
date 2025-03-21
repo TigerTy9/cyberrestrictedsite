@@ -2,8 +2,8 @@
 import { index, route } from "@react-router/dev/routes";
 
 export default [
-  index("routes/home.tsx"),          // Home page
- // route("routes/lore.tsx"),          // Lore route
- // route("routes/chat.tsx"),          // Chat with persona support
-  route("routes/books.tsx"),         // Books route (from your import)
-] satisfies RouteConfig;
+  index("routes/_index.tsx"),      // Home route (correct file name for home is usually `_index.tsx`)
+ // route("routes/lore.tsx"),
+ // route("routes/chat.tsx"),        // Add this only if chat.tsx exists
+  route("routes/books.tsx"),       // Same here
+];
