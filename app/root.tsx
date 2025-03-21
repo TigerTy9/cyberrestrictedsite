@@ -15,14 +15,21 @@ import Books from "./Books";
 import { NavBar } from "./components/NavBar";
 
 // root.tsx
-import routes from "@react-router/dev/routes";
-const { index, file } = routes;
+import { index } from "@react-router/dev/routes";
+import type { RouteConfig } from "@react-router/dev/routes";
 
 export default [
   index("routes/home.tsx"),
-  route("routes/about.tsx"),
-  route("routes/books.tsx"),
-];
+  {
+    path: "about",
+    file: "routes/about.tsx",
+  },
+  {
+    path: "books",
+    file: "routes/books.tsx",
+  },
+] satisfies RouteConfig;
+
 
 
 export const links: Route.LinksFunction = () => [
