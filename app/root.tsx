@@ -10,27 +10,31 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import "./styles/global.css";
-//import GlitchEffect from "./GlitchEffect";
+import GlitchEffect from "./GlitchEffect";
 //import Books from "./Books";
 import { NavBar } from "./components/NavBar";
 
 // root.tsx
 import { index } from "@react-router/dev/routes";
 import type { RouteConfig } from "@react-router/dev/routes";
+import HomePage from "./routes/home";
+import AboutPage from "./routes/about";
+import BooksPage from "./routes/books";
 
 export default [
-  index("routes/home.tsx"),
+  {
+    index: true,
+    element: <HomePage />,
+  },
   {
     path: "about",
-    file: "routes/about.tsx",
+    element: <AboutPage />,
   },
   {
     path: "books",
-    file: "routes/books.tsx",
+    element: <BooksPage />,
   },
-] satisfies RouteConfig;
-
-
+];
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
