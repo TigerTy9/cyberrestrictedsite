@@ -1,18 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
 import { Link } from "react-router";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 
 const books = [
   {
     id: "CR_001",
-    title: "Cyber Restricted",
+    title: "Cyber Restricted: Origin Protocol",
     description:
       "[ACCESS GRANTED] The story begins. Ruven discovers the truth hidden beneath layers of code and illusion.",
     status: "AVAILABLE",
   },
   {
     id: "CR_002",
-    title: "Cyber Confined",
+    title: "Cyber Restricted: Fragment Reboot",
     description:
       "[DECRYPTION IN PROGRESS] Glitches aren't just bugs — they're messages. Someone is trying to reach him.",
     status: "COMING SOON",
@@ -20,6 +21,25 @@ const books = [
 ];
 
 export default function Books() {
+  const takeoverControls = useAnimation();
+
+  useEffect(() => {
+    const takeover = () => {
+      takeoverControls.start({
+        opacity: [0, 1, 0],
+        scale: [1, 1.2, 1],
+        backgroundColor: ["#000000", "#ff0000", "#000000"],
+        transition: { duration: 0.6 }
+      });
+    };
+
+    const interval = setInterval(() => {
+      if (Math.random() < 0.15) takeover();
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, [takeoverControls]);
+
   return (
     <motion.div
       className="relative min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-green-400 font-mono p-6 overflow-hidden"
@@ -27,6 +47,13 @@ export default function Books() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2 }}
     >
+      {/* Occasional takeover overlay */}
+      <motion.div
+        className="absolute inset-0 z-50 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={takeoverControls}
+      />
+
       {/* Background grid + scanline + slow flicker */}
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"
