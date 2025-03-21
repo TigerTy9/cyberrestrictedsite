@@ -6,14 +6,14 @@ import { Card, CardContent } from "@/components/ui/card";
 const books = [
   {
     id: "CR_001",
-    title: "Cyber Restricted: Origin Protocol",
+    title: "Cyber Restricted",
     description:
       "[ACCESS GRANTED] The story begins. Ruven discovers the truth hidden beneath layers of code and illusion.",
     status: "AVAILABLE",
   },
   {
     id: "CR_002",
-    title: "Cyber Restricted: Fragment Reboot",
+    title: "Cyber Confined",
     description:
       "[DECRYPTION IN PROGRESS] Glitches aren't just bugs — they're messages. Someone is trying to reach him.",
     status: "COMING SOON",
