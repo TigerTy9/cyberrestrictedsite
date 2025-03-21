@@ -22,7 +22,7 @@ import ReactDOM from "react-dom/client";
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<GlitchEffect />} />
+      <Route path="/GlitchEffect" element={<GlitchEffect />} />
     </Routes>
   </BrowserRouter>
 );
