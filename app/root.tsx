@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "loadspinner",
-        element: <LoadingSpiner />,
+        element: <LoadingSpinner />,
       },
       // {
       //   // path: "/about",
