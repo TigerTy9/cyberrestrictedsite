@@ -12,16 +12,6 @@ import "./app.css";
 import "./styles/global.css";
 import GlitchEffect from "./GlitchEffect";
 import Books from "./Books";
-import { NavBar } from "./components/NavBar";
-
-export default function App() {
-  return (
-    <GlitchEffect>
-      <NavBar />
-      <Outlet />
-    </GlitchEffect>
-  );
-}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -51,6 +41,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
+  );
+}
+
+export default function App() {
+  return (
+    <GlitchEffect>
+      <Outlet />
+    </GlitchEffect>
   );
 }
 
