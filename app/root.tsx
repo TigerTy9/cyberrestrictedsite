@@ -23,15 +23,6 @@ export default [
   routeFile("routes/books.tsx"),
 ] satisfies RouteConfig;
 
-export default function App() {
-  return (
-    <GlitchEffect>
-      <NavBar />
-      <Outlet />
-    </GlitchEffect>
-  );
-}
-
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
