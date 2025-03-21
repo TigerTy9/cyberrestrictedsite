@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home.jsx";
 //import About from "./components/About.jsx";
-//import ErrorPage from "./components/ErrorPage.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 //import Books from "./components/Books.jsx";
 //import BookDetail from "./components/BookDetail.jsx";
 import LoadingSpinner from "./components/LoadingSpinner.jsx";
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-  //  errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
