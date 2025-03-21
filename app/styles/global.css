@@ -1,0 +1,7 @@
+/* app/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional custom colors or glitch styles */
+
