@@ -22,7 +22,7 @@ const Header = () => {
 
         {/* Desktop Nav */}
         <ul className="hidden lg:flex items-center space-x-10 font-medium">
-          {['Home', 'Books', 'About'].map((label, i) => (
+          {['Home',].map((label, i) => (
             <li key={i}>
               <NavLink
                 to={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
@@ -73,7 +73,7 @@ const Header = () => {
               </div>
               <nav>
                 <ul className="space-y-4">
-                  {['Home', 'Books', 'About'].map((label, i) => (
+                  {['Home',].map((label, i) => (
                     <li key={i}>
                       <Link
                         to={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
