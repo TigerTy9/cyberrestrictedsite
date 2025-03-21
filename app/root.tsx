@@ -11,7 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "./styles/global.css";
 import GlitchEffect from "./GlitchEffect";
-import Books from "./Books";
+//import Books from "./Books";
 import { NavBar } from "./components/NavBar";
 
 // root.tsx
