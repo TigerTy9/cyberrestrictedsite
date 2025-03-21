@@ -14,6 +14,15 @@ import GlitchEffect from "./GlitchEffect";
 import Books from "./Books";
 import { NavBar } from "./components/NavBar";
 
+// root.tsx
+import { type RouteConfig, index, routeFile } from "@react-router/dev/routes";
+
+export default [
+  index("routes/home.tsx"),
+  routeFile("routes/about.tsx"),
+  routeFile("routes/books.tsx"),
+] satisfies RouteConfig;
+
 export default function App() {
   return (
     <GlitchEffect>

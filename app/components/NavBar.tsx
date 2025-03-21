@@ -1,13 +1,41 @@
-// File: app/components/NavBar.tsx
-import { Link } from "react-router-dom";
+// components/NavBar.tsx
+import { NavLink } from "react-router-dom";
 
 export function NavBar() {
   return (
-    <nav className="flex justify-center space-x-6 py-4 text-yellow-400 font-mono z-50 relative">
-      <Link to="/" className="hover:text-red-400 transition-all duration-300">Home</Link>
-      <Link to="/lore" className="hover:text-red-400 transition-all duration-300">Lore</Link>
-      <Link to="/chat" className="hover:text-red-400 transition-all duration-300">Chat</Link>
-      <Link to="/books" className="hover:text-red-400 transition-all duration-300">Books</Link>
+    <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur text-white z-50 shadow-md">
+      <ul className="flex space-x-6 p-4 container mx-auto">
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "font-bold underline" : "hover:underline"
+            }
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "font-bold underline" : "hover:underline"
+            }
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/books"
+            className={({ isActive }) =>
+              isActive ? "font-bold underline" : "hover:underline"
+            }
+          >
+            Books
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 }
