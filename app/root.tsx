@@ -13,18 +13,17 @@ import "./styles/global.css";
 import GlitchEffect from "./GlitchEffect";
 import Books from "./Books";
 import { NavBar } from "./components/NavBar";
-type RouteConfig = typeof routes extends { RouteConfig: infer R } ? R : never;
 
 // root.tsx
 import routes from "@react-router/dev/routes";
-
-const { index, routeFile } = routes;
+const { index, file } = routes;
 
 export default [
   index("routes/home.tsx"),
-  routeFile("routes/about.tsx"),
-  routeFile("routes/books.tsx"),
-] satisfies routes.RouteConfig;
+  file("routes/about.tsx"),
+  file("routes/books.tsx"),
+];
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
