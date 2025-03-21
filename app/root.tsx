@@ -8,7 +8,7 @@ import Home from "./components/Home.jsx";
 //import ErrorPage from "./components/ErrorPage.jsx";
 //import Books from "./components/Books.jsx";
 //import BookDetail from "./components/BookDetail.jsx";
-import LoadingSpiner from "./components/LoadingSpiner.jsx";
+import LoadingSpiner from "./components/LoadingSpinner.jsx";
 
 const router = createBrowserRouter([
   {
