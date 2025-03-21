@@ -1,124 +1,97 @@
-import {
-    BookOpenIcon,
-    Bars3CenterLeftIcon,
-    XMarkIcon,
-  } from "@heroicons/react/24/solid";
-  import { useState } from "react";
-  import { Link, NavLink } from "react-router-dom";
-  const Header = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    return (
-      <div className=" bg-gray-200 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 rounded-lg mt-5">
-        <div className="flex items-center justify-between">
-          {/* logo */}
-          <Link to="/" className="inline-flex items-center">
-            <BookOpenIcon className="h-6 w-6 text-blue-500" />
-            <span className="font-bold text-xl ml-2 tracking-wide">
-              Chapter & Co.
-            </span>
-          </Link>
-          {/* nav bar */}
-          <ul className="lg:flex items-center hidden space-x-8 font-semibold">
-            <li>
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  return (
+    <div className="bg-black/80 text-white px-6 py-5 mx-auto rounded-xl mt-6 shadow-lg border border-purple-500 backdrop-blur-md">
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="inline-flex items-center gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <span className="text-purple-400 font-bold">📚</span>
+          </motion.div>
+          <span className="text-xl font-bold tracking-widest glitch-text">GlitchBooks</span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <ul className="hidden lg:flex items-center space-x-10 font-medium">
+          {['Home', 'Books', 'About'].map((label, i) => (
+            <li key={i}>
               <NavLink
-                to="/"
+                to={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
                 className={({ isActive }) =>
-                  isActive ? "text-blue-500" : "default"
-                }
-                title="Home"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/books"
-                title="Books"
-                className={({ isActive }) =>
-                  isActive ? "text-blue-500" : "default"
+                  isActive ? 'text-purple-400 neon-text' : 'hover:text-purple-300 transition'
                 }
               >
-                Books
+                {label}
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/about"
-                title="About"
-                className={({ isActive }) =>
-                  isActive ? "text-blue-500" : "default"
-                }
-              >
-                About us
-              </NavLink>
-            </li>
-          </ul>
-          <div className="lg:hidden">
-            {/* Dropdown Open Button */}
-            <button
-              aria-label="Open Menu"
-              title="Open Menu"
-              onClick={() => setIsMenuOpen(true)}
-            >
-              <Bars3CenterLeftIcon className="w-5 text-gray-600" />
-            </button>
-            {isMenuOpen && (
-              <div className="absolute top-0 left-0 w-full z-10">
-                <div className="p-5 bg-white border rounded shadow-sm">
-                  {/* Logo & Button section */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <Link to="/" className="inline-flex items-center">
-                        <BookOpenIcon className="h-6 w-6 text-blue-500" />
-                        <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          nextPage
-                        </span>
-                      </Link>
-                    </div>
-                    {/* Dropdown menu close button */}
-                    <div>
-                      <button
-                        aria-label="Close Menu"
-                        title="Close Menu"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <XMarkIcon className="w-5 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-                  {/* Mobile Nav Items Section */}
-                  <nav>
-                    <ul className="space-y-4">
-                      <li>
-                        <Link to="/" className="default">
-                          Home
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/books"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400"
-                        >
-                          Books
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/about"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-400"
-                        >
-                          About Us
-                        </Link>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            )}
-          </div>
+          ))}
+        </ul>
+
+        {/* Mobile menu toggle */}
+        <div className="lg:hidden">
+          <button
+            aria-label="Open Menu"
+            onClick={() => setIsMenuOpen(true)}
+            className="text-purple-400 hover:text-purple-300 text-2xl"
+          >
+            ☰
+          </button>
         </div>
       </div>
-    );
-  };
-  
-  export default Header;
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-0 left-0 w-full bg-black border-b border-purple-500 z-50"
+          >
+            <div className="p-5">
+              <div className="flex items-center justify-between mb-4">
+                <Link to="/" className="inline-flex items-center gap-2">
+                  <span className="text-purple-400 font-bold">📚</span>
+                  <span className="text-xl font-bold tracking-widest glitch-text">GlitchBooks</span>
+                </Link>
+                <button
+                  aria-label="Close Menu"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-purple-400 hover:text-purple-300 text-2xl"
+                >
+                  ✕
+                </button>
+              </div>
+              <nav>
+                <ul className="space-y-4">
+                  {['Home', 'Books', 'About'].map((label, i) => (
+                    <li key={i}>
+                      <Link
+                        to={label === 'Home' ? '/' : `/${label.toLowerCase()}`}
+                        className="block text-white hover:text-purple-300 font-medium"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default Header;
