@@ -5,7 +5,6 @@ import {
   Outlet,
   Scripts,
   Routes,
-  Route,
   BrowserRouter,
   ScrollRestoration,
 } from "react-router";
