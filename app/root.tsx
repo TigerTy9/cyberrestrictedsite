@@ -20,8 +20,8 @@ const { index, file } = routes;
 
 export default [
   index("routes/home.tsx"),
-  file("routes/about.tsx"),
-  file("routes/books.tsx"),
+  route("routes/about.tsx"),
+  route("routes/books.tsx"),
 ];
 
 
