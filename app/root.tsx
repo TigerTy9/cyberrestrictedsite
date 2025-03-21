@@ -38,10 +38,10 @@ const router = createBrowserRouter([
         path: "loadspinner",
         element: <LoadingSpiner />,
       },
-      {
-        path: "/about",
-        element: <About />,
-      },
+      // {
+      //   // path: "/about",
+      //   // element: <About />,
+      // },
     ],
   },
 ]);
